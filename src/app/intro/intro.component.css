@@ -2,10 +2,6 @@ h1 {
   margin: 3rem 0;
 }
 
-.intro-content {
-  margin: 0 5rem;
-}
-
 .intro-p {
   margin: 3rem 0;
 }
@@ -13,4 +9,10 @@ h1 {
 .unsub-button {
   display: block;
   margin: 1rem auto;
+}
+
+@media (min-width: 768px) {
+  .intro-content {
+    margin: 0 5rem;
+  }
 }
