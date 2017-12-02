@@ -1,0 +1,77 @@
+<div class="intro-content">
+  <h1>What is rxjs?</h1>
+  <h2 class="intro-p">Andre Staltz: "
+    <i>Reactive programming is programming with asynchronous data streams.</i>"</h2>
+  <h3 class="intro-p">Data streams can be created out of anything: variables, user inputs, properties, data structures, etc.</h3>
+  <div class="intro-example">
+    <p>
+      <strong>Example:</strong>
+    </p>
+    <div class="code-example">
+      <pre>
+        <code class="javascript">
+          exampleObservableFromArray(): Observable &lt;string[]&gt; {{ '{' }}
+            return Observable.of(['hello', 'we', 'are', 'a', 'stream']);
+          {{ '}' }}
+          
+          this.exampleObservableFromArray()
+            .subscribe(data => this.fromArray = data);
+        </code>
+      </pre>
+      <p>
+        <strong>Result from subscribing on page initialization:</strong>
+      </p>
+      <div class="code-result">
+        <span *ngFor="let item of fromArray">{{item}}</span>
+      </div>
+    </div>
+  </div>
+  <h3 class="intro-p">rxjs also provides a set of tools,
+    <strong>operators</strong>, that are used to manipulate data streams.</h3>
+  <p>
+    <strong>Example:</strong>
+  </p>
+  <div class="code-example">
+    <pre>
+        <code class="javascript">
+
+            // endExample$ initialization:
+            endExample$: Subject &lt;any&gt; = new Subject();
+
+            exampleObservableFromArray(): Observable &lt;string[]&gt; {{ '{' }}
+                return Observable.of(['hello', 'we', 'are', 'a', 'stream', '!']);
+              {{ '}' }}
+            
+              anotherExampleFromArray(): Observable &lt;string[]&gt; {{ '{' }}
+                return Observable.of(['other', 'stuff', 'from', 'another', 'array', ' ']);
+              {{ '}' }}
+            
+              // This one never stops unless unsubscribed!
+              exampleWithSomeNumbers(): Observable &lt;number&gt; {{ '{' }}
+                return Observable.interval(1000);
+              {{ '}' }}
+
+
+            const merged =
+              this.exampleObservableFromArray()
+                .merge(this.exampleWithSomeNumbers())
+                .merge(this.anotherExampleFromArray());
+            // merge emits concurrently, and thus the numbers will be the last ones emitted.
+            merged
+              .takeUntil(this.endExample$)
+              .subscribe(mergeData => {{ '{' }}
+              this.mergedResult.push(mergeData);
+            {{ '}' }});
+        </code>
+    </pre>
+    <p>
+      <strong>Result from subscribing to the merged stream on page initialization:</strong>
+    </p>
+    <div class="code-result">
+      <span *ngFor="let item of mergedResult">{{item}}</span>
+    </div>
+  </div>
+  <p> <code>takeUntil()</code> is an operator that is used to emit values until its provided observable emits a value.</p>
+  <p>Button press makes the provided observable, <code>this.endExample$</code>, emit a value which makes the numbers stop incrementing.</p>
+  <button class="unsub-button" type="button" (click)="unsub()">Unsubscribe</button>
+</div>

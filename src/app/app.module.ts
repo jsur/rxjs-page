@@ -1,16 +1,45 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { IntroComponent } from './intro/intro.component';
+import { CombineLatestComponent } from './combine-latest/combine-latest.component';
+import { ExchangeDataService } from './services/exchange-data.service';
+import { HttpClientModule } from '@angular/common/http';
+import { SourcesComponent } from './sources/sources.component';
+
+const appRoutes: Routes = [
+  { path: '', component: IntroComponent },
+  { path: 'combinelatest', component: CombineLatestComponent },
+  { path: 'sources', component: SourcesComponent },
+  { path: '**', redirectTo: '/' }
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    IntroComponent,
+    CombineLatestComponent,
+    SourcesComponent
   ],
   imports: [
-    BrowserModule
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule
   ],
-  providers: [],
+  providers: [
+    ExchangeDataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
