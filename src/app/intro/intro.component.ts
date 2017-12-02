@@ -20,6 +20,7 @@ export class IntroComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
     this.exampleObservableFromArray()
       .subscribe(data => this.fromArray = data);
 

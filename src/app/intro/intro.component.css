@@ -1,3 +1,11 @@
+h1 {
+  margin: 3rem 0;
+}
+
+.intro-content {
+  margin: 0 5rem;
+}
+
 .intro-p {
   margin: 3rem 0;
 }

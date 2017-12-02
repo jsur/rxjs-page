@@ -12,9 +12,13 @@ import { CombineLatestComponent } from './combine-latest/combine-latest.componen
 import { ExchangeDataService } from './services/exchange-data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SourcesComponent } from './sources/sources.component';
+import { StreamComponent } from './stream/stream.component';
+import { SubjectComponent } from './subject/subject.component';
 
 const appRoutes: Routes = [
   { path: '', component: IntroComponent },
+  { path: 'stream', component: StreamComponent },
+  { path: 'subject', component: SubjectComponent },
   { path: 'combinelatest', component: CombineLatestComponent },
   { path: 'sources', component: SourcesComponent },
   { path: '**', redirectTo: '/' }
@@ -25,7 +29,9 @@ const appRoutes: Routes = [
     AppComponent,
     IntroComponent,
     CombineLatestComponent,
-    SourcesComponent
+    SourcesComponent,
+    StreamComponent,
+    SubjectComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
