@@ -10,9 +10,3 @@ h1 {
   display: block;
   margin: 1rem auto;
 }
-
-@media (min-width: 768px) {
-  .intro-content {
-    margin: 0 5rem;
-  }
-}

@@ -14,10 +14,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { SourcesComponent } from './sources/sources.component';
 import { StreamComponent } from './stream/stream.component';
 import { SubjectComponent } from './subject/subject.component';
+import { ObservableComponent } from './observable/observable.component';
 
 const appRoutes: Routes = [
   { path: '', component: IntroComponent },
-  { path: 'stream', component: StreamComponent },
+  { path: 'observable', component: ObservableComponent },
   { path: 'subject', component: SubjectComponent },
   { path: 'combinelatest', component: CombineLatestComponent },
   { path: 'sources', component: SourcesComponent },
@@ -31,7 +32,8 @@ const appRoutes: Routes = [
     CombineLatestComponent,
     SourcesComponent,
     StreamComponent,
-    SubjectComponent
+    SubjectComponent,
+    ObservableComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

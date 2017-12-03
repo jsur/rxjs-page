@@ -1,8 +1,8 @@
 <div class="intro-content">
 
   <h1>What is Reactive programming / RxJS?</h1>
-  <h3>Andre Staltz: "
-    <i>Reactive programming is programming with asynchronous data streams.</i>"</h3>
+  <h3>'<i>Reactive programming is programming with asynchronous data streams.</i>' - Andre Staltz</h3>
+  <h3>'<i>Think of RxJS as Lodash for events.</i>' - reactivex.io</h3>
   <h3>Data streams can be created out of anything: variables, user inputs, properties, data structures, etc.</h3>
 
   <div class="intro-example">
@@ -12,12 +12,12 @@
     <div class="code-example">
       <pre>
         <code class="javascript">
-          exampleObservableFromArray(): Observable &lt;string[]&gt; {{ '{' }}
-            return Observable.of(['hello', 'we', 'are', 'a', 'stream']);
-          {{ '}' }}
-          
-          this.exampleObservableFromArray()
-            .subscribe(data => this.fromArray = data);
+  exampleObservableFromArray(): Observable &lt;string[]&gt; {{ '{' }}
+    return Observable.of(['hello', 'we', 'are', 'a', 'stream']);
+  {{ '}' }}
+
+  this.exampleObservableFromArray()
+    .subscribe(data => this.fromArray = data);
         </code>
       </pre>
       <p>
@@ -41,34 +41,34 @@
   <div class="code-example">
     <pre>
         <code class="javascript">
+  // endExample$ initialization:
+  endExample$: Subject &lt;any&gt; = new Subject();
 
-            // endExample$ initialization:
-            endExample$: Subject &lt;any&gt; = new Subject();
+  exampleObservableFromArray(): Observable &lt;string[]&gt; {{ '{' }}
+    return Observable.of(['hello', 'we', 'are', 'a', 'stream', '!']);
+  {{ '}' }}
 
-            exampleObservableFromArray(): Observable &lt;string[]&gt; {{ '{' }}
-              return Observable.of(['hello', 'we', 'are', 'a', 'stream', '!']);
-            {{ '}' }}
-            
-            anotherExampleFromArray(): Observable &lt;string[]&gt; {{ '{' }}
-              return Observable.of(['other', 'stuff', 'from', 'another', 'array', ' ']);
-            {{ '}' }}
-            
-            // This one never stops unless unsubscribed!
-            exampleWithSomeNumbers(): Observable &lt;number&gt; {{ '{' }}
-              return Observable.interval(1000);
-            {{ '}' }}
+  anotherExampleFromArray(): Observable &lt;string[]&gt; {{ '{' }}
+    return Observable.of(['other', 'stuff', 'from', 'another', 'array', ' ']);
+  {{ '}' }}
+
+  // This one never stops unless unsubscribed!
+  exampleWithSomeNumbers(): Observable &lt;number&gt; {{ '{' }}
+    return Observable.interval(1000);
+  {{ '}' }}
 
 
-            const merged =
-              this.exampleObservableFromArray()
-                .merge(this.exampleWithSomeNumbers())
-                .merge(this.anotherExampleFromArray());
-            // merge emits concurrently, and thus the numbers will be the last ones emitted.
-            merged
-              .takeUntil(this.endExample$)
-              .subscribe(mergeData => {{ '{' }}
-                this.mergedResult.push(mergeData);
-            {{ '}' }});
+  const merged =
+    this.exampleObservableFromArray()
+      .merge(this.exampleWithSomeNumbers())
+      .merge(this.anotherExampleFromArray());
+  // The arrays are pushed immediately (synchronously)
+  // the numbers start incrementing after 1 second
+  merged
+    .takeUntil(this.endExample$)
+    .subscribe(mergeData => {{ '{' }}
+      this.mergedResult.push(mergeData);
+  {{ '}' }});
         </code>
     </pre>
     <p>
