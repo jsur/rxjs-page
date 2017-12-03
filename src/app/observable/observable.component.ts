@@ -55,7 +55,7 @@ export class ObservableComponent implements OnInit {
           .throttleTime(1000)
           // .filter(data => data[0].side === 'buy')
           .subscribe(data => {
-          observer.next(`${data[0].price} I am the most recent ${data[0].side === 'buy' ? 'buy' : 'sell'} price of ETH/USD, I am async.`);
+          observer.next(`${data[0].price} I am the most recent ${data[0].side === 'buy' ? 'BUY' : 'SELL'} price of ETH/USD, I am async.`);
         });
       } catch (error) {
         observer.error(error); // If something breaks and an error is caught

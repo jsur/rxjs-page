@@ -17,7 +17,7 @@
             .throttleTime(1000)
             .subscribe(data => {{ '{' }}
               observer.next(`${{ '{' }} data[0].price {{ '}' }} 
-              I am the most recent $ {{ '{' }} data[0].side === 'buy' ? 'buy' : 'sell' {{ '}' }} 
+              I am the most recent $ {{ '{' }} data[0].side === 'buy' ? 'BUY' : 'SELL' {{ '}' }} 
               price of ETH/USD, I am async.`);
           {{ '}' }});
         {{ '}' }} catch (error) {{ '{' }} 
