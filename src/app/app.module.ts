@@ -12,7 +12,6 @@ import { CombineLatestComponent } from './combine-latest/combine-latest.componen
 import { ExchangeDataService } from './services/exchange-data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SourcesComponent } from './sources/sources.component';
-import { StreamComponent } from './stream/stream.component';
 import { SubjectComponent } from './subject/subject.component';
 import { ObservableComponent } from './observable/observable.component';
 
@@ -31,7 +30,6 @@ const appRoutes: Routes = [
     IntroComponent,
     CombineLatestComponent,
     SourcesComponent,
-    StreamComponent,
     SubjectComponent,
     ObservableComponent
   ],

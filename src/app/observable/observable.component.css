@@ -1,3 +1,15 @@
+h3 {
+  margin: 2.5rem 0;
+}
+
 .observable-content {
   overflow: auto;
+}
+
+.async-example > :first-child {
+  color: lime;
+}
+
+.observable-types {
+  list-style: none;
 }

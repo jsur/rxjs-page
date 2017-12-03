@@ -32,7 +32,7 @@ export class IntroComponent implements OnInit {
     merged
       .takeUntil(this.endExample$)
       .subscribe(mergeData => {
-      this.mergedResult.push(mergeData);
+      this.mergedResult.unshift(mergeData);
     });
   }
 

@@ -12,7 +12,7 @@
     <div class="code-example">
       <pre>
         <code class="javascript">
-  exampleObservableFromArray(): Observable &lt;string[]&gt; {{ '{' }}
+  exampleObservableFromArray(): Observable&lt;string[]&gt; {{ '{' }}
     return Observable.of(['hello', 'we', 'are', 'a', 'stream']);
   {{ '}' }}
 
@@ -42,18 +42,18 @@
     <pre>
         <code class="javascript">
   // endExample$ initialization:
-  endExample$: Subject &lt;any&gt; = new Subject();
+  endExample$: Subject&lt;any&gt; = new Subject();
 
-  exampleObservableFromArray(): Observable &lt;string[]&gt; {{ '{' }}
+  exampleObservableFromArray(): Observable&lt;string[]&gt; {{ '{' }}
     return Observable.of(['hello', 'we', 'are', 'a', 'stream', '!']);
   {{ '}' }}
 
-  anotherExampleFromArray(): Observable &lt;string[]&gt; {{ '{' }}
+  anotherExampleFromArray(): Observable&lt;string[]&gt; {{ '{' }}
     return Observable.of(['other', 'stuff', 'from', 'another', 'array', ' ']);
   {{ '}' }}
 
   // This one never stops unless unsubscribed!
-  exampleWithSomeNumbers(): Observable &lt;number&gt; {{ '{' }}
+  exampleWithSomeNumbers(): Observable&lt;number&gt; {{ '{' }}
     return Observable.interval(1000);
   {{ '}' }}
 
@@ -67,7 +67,7 @@
   merged
     .takeUntil(this.endExample$)
     .subscribe(mergeData => {{ '{' }}
-      this.mergedResult.push(mergeData);
+      this.mergedResult.unshift(mergeData);
   {{ '}' }});
         </code>
     </pre>

@@ -5,22 +5,24 @@
   <h3>The important thing to realize is that Observables can return multiple values over time, whereas Promises return only one.</h3>
   <p>Example:</p>
 
-  <button type="button" (click)="unsub()">Unsubscribe</button>
-
   <div class="code-example">
     <pre>
       <code class="javascript">
-  private exampleObservable(): Observable &lt;any&gt; {{ '{' }}
-      return Observable.create((observer: Observer &lt;any&gt;) => {{ '{' }}
-        observer.next('Hello, I am pushed syncronously with observer.next().');
-        observer.next('Hello again, I am also pushed syncronously');
-        this.trades.getTrades()
-          .throttleTime(1000)
-          .subscribe(data => {{ '{' }}
-          observer.next(`${{ '{' }} data[0].price {{ '}' }} 
-            I am the most recent $ {{ '{' }} data[0].side === 'buy' ? 'buy' : 'sell' {{ '}' }} 
-            price of ETH/USD, I am async.`);
-        {{ '}' }});
+  private exampleObservable(): Observable&lt;any&gt; {{ '{' }}
+      return Observable.create((observer: Observer&lt;any&gt;) => {{ '{' }}
+        try {{ '{' }}
+          observer.next('Hello, I am pushed synchronously with observer.next().');
+          observer.next('Hello again, I am also pushed synchronously');
+          this.trades.getTrades()
+            .throttleTime(1000)
+            .subscribe(data => {{ '{' }}
+              observer.next(`${{ '{' }} data[0].price {{ '}' }} 
+              I am the most recent $ {{ '{' }} data[0].side === 'buy' ? 'buy' : 'sell' {{ '}' }} 
+              price of ETH/USD, I am async.`);
+          {{ '}' }});
+        {{ '}' }} catch (error) {{ '{' }} 
+          observer.error(error);
+        {{ '}' }}
       {{ '}' }});
     {{ '}' }}
 
@@ -30,18 +32,69 @@
     .subscribe(
       data => {{ '{' }}
         this.exampleOne.unshift(data);
-        if (this.exampleOne.length === 10) {{ '{' }}
+        if (this.exampleOne.length > 5) {{ '{' }}
           this.exampleOne.pop();
       {{ '}' }}
     {{ '}' }});
       </code>
     </pre>
 
-    <div class="code-result">
+    <div class="code-result async-example">
         <span *ngFor="let item of exampleOne">{{item}}
           <br>
         </span>
       </div>
+  </div>
+  <br>
+  <button type="button" (click)="unsub()">Unsubscribe</button>
+
+  <h3>You have to subscribe to an Observable to receive values from it.</h3>
+  <h3>An Observable can have many Observers, and each Observer owns an independent execution of the Observable.</h3>
+  <h3>In English: Every time someone subscribes to an Observable, they get the all the values the Observable's subscribe function returns. No data is shared between the different Observers.</h3>
+
+  <h3>An Observable delivers 3 types of values:</h3>
+  <ul class="observable-types">
+    <li>Next: Values such as Numbers, Strings, Objects</li>
+    <li>Error: Javascript error or notification</li>
+    <li>Complete: Does not send a value</li>
+  </ul>
+
+  <h3>0 to infinite Next notifications can be delivered.</h3>
+  <h3>Error and Complete events can happen only once. Nothing else can be delivered after them.</h3>
+
+  <p>Example:</p>
+
+  <div class="code-example">
+    <pre>
+      <code>
+  private observableValuesExample(): Observable&lt;any&gt; {{ '{' }}
+      return Observable.create((observer: Observer&lt;any&gt;) => {{ '{' }}
+        try {{ '{' }}
+          observer.next('first');
+          observer.next('second');
+          observer.next('third');
+          observer.complete();
+          observer.next('fourth'); // This won't be reached.
+        {{ '}' }} catch (error) {{ '{' }}
+          observer.error(error); // If something breaks and an error is caught
+        {{ '}' }}
+      {{ '}' }});
+    {{ '}' }}
+
+
+  this.observableValuesExample()
+    .subscribe(
+      // Three types of values delivered
+      data => this.exampleTwo.push(data),
+      error => this.exampleTwo.push(error),
+      () => this.exampleTwo.push('observable complete!')
+    );
+      </code>
+    </pre>
+
+    <div class="code-result">
+      <p *ngFor="let item of exampleTwo">{{item}}</p>
+    </div>
   </div>
 
 </div>
