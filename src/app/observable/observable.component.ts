@@ -18,7 +18,9 @@ import { Subscription } from 'rxjs/Subscription';
 export class ObservableComponent implements OnInit {
   exampleOne = [];
   exampleTwo = [];
+  exampleThree = [];
   endExample$: Subject<any> = new Subject();
+  subscription: Subscription;
 
   constructor(private trades: ExchangeDataService) { }
 
@@ -40,6 +42,13 @@ export class ObservableComponent implements OnInit {
         error => this.exampleTwo.push(error),
         () => this.exampleTwo.push('observable complete!')
       );
+
+    this.subscription = this.unsubscribeExample().subscribe(data => {
+      this.exampleThree.unshift(data);
+      if (this.exampleThree.length > 5) {
+        this.exampleThree.pop();
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -52,7 +61,7 @@ export class ObservableComponent implements OnInit {
         observer.next('Hello, I am pushed synchronously with observer.next().');
         observer.next('Hello again, I am also pushed synchronously');
         this.trades.getTrades()
-          .throttleTime(1000)
+          .throttleTime(2000)
           // .filter(data => data[0].side === 'buy')
           .subscribe(data => {
           observer.next(`${data[0].price} I am the most recent ${data[0].side === 'buy' ? 'BUY' : 'SELL'} price of ETH/USD, I am async.`);
@@ -77,8 +86,16 @@ export class ObservableComponent implements OnInit {
     });
   }
 
+  private unsubscribeExample(): Observable<any> {
+    return Observable.interval(1000);
+  }
+
   unsub() {
     this.endExample$.next('end this!');
+  }
+
+  unsubscribeFromExample(): void {
+    this.subscription.unsubscribe();
   }
 
 

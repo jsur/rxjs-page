@@ -13,7 +13,7 @@ export class ExchangeDataService {
   constructor(private http: HttpClient) { }
 
   public getTrades(): Observable<any> {
-    return Observable.interval(500)
+    return Observable.interval(1000)
       .switchMap(() => this.http.get(`${this.BASE_URL}/products/ETH-USD/trades`));
   }
 }

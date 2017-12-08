@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SourcesComponent } from './sources/sources.component';
 import { SubjectComponent } from './subject/subject.component';
 import { ObservableComponent } from './observable/observable.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 const appRoutes: Routes = [
   { path: '', component: IntroComponent },
@@ -44,7 +45,8 @@ const appRoutes: Routes = [
     MatButtonModule
   ],
   providers: [
-    ExchangeDataService
+    ExchangeDataService,
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })

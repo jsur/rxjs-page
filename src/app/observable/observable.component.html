@@ -14,7 +14,7 @@
           observer.next('Hello, I am pushed synchronously with observer.next().');
           observer.next('Hello again, I am also pushed synchronously');
           this.trades.getTrades()
-            .throttleTime(1000)
+            .throttleTime(2000)
             .subscribe(data => {{ '{' }}
               observer.next(`${{ '{' }} data[0].price {{ '}' }} 
               I am the most recent $ {{ '{' }} data[0].side === 'buy' ? 'BUY' : 'SELL' {{ '}' }} 
@@ -40,17 +40,18 @@
     </pre>
 
     <div class="code-result async-example">
-        <span *ngFor="let item of exampleOne">{{item}}
-          <br>
-        </span>
-      </div>
+      <span *ngFor="let item of exampleOne">{{item}}
+        <br>
+      </span>
+    </div>
   </div>
   <br>
   <button type="button" (click)="unsub()">Unsubscribe</button>
 
   <h3>You have to subscribe to an Observable to receive values from it.</h3>
   <h3>An Observable can have many Observers, and each Observer owns an independent execution of the Observable.</h3>
-  <h3>In English: Every time someone subscribes to an Observable, they get the all the values the Observable's subscribe function returns. No data is shared between the different Observers.</h3>
+  <h3>In English: Every time someone subscribes to an Observable, they get the all the values the Observable's subscribe function
+    returns. No data is shared between the different Observers.</h3>
 
   <h3>An Observable delivers 3 types of values:</h3>
   <ul class="observable-types">
@@ -96,5 +97,46 @@
       <p *ngFor="let item of exampleTwo">{{item}}</p>
     </div>
   </div>
+
+  <h3>You also have to unsubscribe from Observables to avoid wasting memory resources.</h3>
+  <p>Example:</p>
+
+  <div class="code-example">
+    <pre>
+      <code class="javascript">
+// Return a basic 1 sec interval Observable
+private unsubscribeExample(): Observable&lt;any&gt; {{ '{' }}
+    return Observable.interval(1000);
+{{ '}' }}
+
+// Example Observable is subscribed to on component initialization,
+// this.subscription stores a Subscription, a representation of the ongoing execution
+this.subscription = this.unsubscribeExample().subscribe(data => {{ '{' }}
+  this.exampleThree.unshift(data);
+  if (this.exampleThree.length > 5) {{ '{' }}
+    this.exampleThree.pop();
+  {{ '}' }}
+{{ '}' }});
+
+// This function calls the unsubsribe function of the Subscription
+// Press button to call function
+unsubscribeFromExample(): void {{ '{' }}
+  this.subscription.unsubscribe();
+{{ '}' }}
+      </code>
+    </pre>
+    <div class="code-result">
+      <p *ngFor="let item of exampleThree">{{item}}</p>
+    </div>
+  </div>
+  <br>
+  <button type="button" (click)="unsubscribeFromExample()">Unsubscribe</button>
+
+  <h3>A good practice to follow is to unsubscribe from Observables when the view where they are used is destroyed.</h3>
+  <h3>Handling unsubscribes is up to the developer.</h3>
+  <h3>Individual subscriptions can be stored in variables and unsubscribed from one by one.</h3>
+  <h3>Another way would be to add <code>.takeUntil()</code>before every <code>.subscribe()</code>. takeUntil '<i>discards any items emitted by an Observable after a second Observable emits an item or terminates.</i>'</h3>
+  <h3>This .takeUntil() pattern has been used on other unsubscribes on this page.</h3>
+  <p>More on this pattern: <a target="_blank" href="https://medium.com/@benlesh/rxjs-dont-unsubscribe-6753ed4fda87">Ben Lesh, Don't unsubscribe</a></p>
 
 </div>
