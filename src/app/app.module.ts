@@ -15,6 +15,8 @@ import { SourcesComponent } from './sources/sources.component';
 import { SubjectComponent } from './subject/subject.component';
 import { ObservableComponent } from './observable/observable.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { HighlightJsModule } from 'angular2-highlight-js';
+
 
 const appRoutes: Routes = [
   { path: '', component: IntroComponent },
@@ -37,6 +39,7 @@ const appRoutes: Routes = [
   imports: [
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
+    HighlightJsModule,
     BrowserModule,
     BrowserAnimationsModule,
     MatSidenavModule,

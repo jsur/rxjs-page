@@ -5,9 +5,9 @@
   <h3>The important thing to realize is that Observables can return multiple values over time, whereas Promises return only one.</h3>
   <p>Example:</p>
 
-  <div class="code-example">
+  <div class="code-example" highlight-js-content=".highlight">
     <pre>
-      <code class="javascript">
+      <code class="typescript highlight">
   private exampleObservable(): Observable&lt;any&gt; {{ '{' }}
       return Observable.create((observer: Observer&lt;any&gt;) => {{ '{' }}
         try {{ '{' }}
@@ -65,9 +65,9 @@
 
   <p>Example:</p>
 
-  <div class="code-example">
+  <div class="code-example" highlight-js-content=".highlight">
     <pre>
-      <code>
+      <code class="typescript highlight">
   private observableValuesExample(): Observable&lt;any&gt; {{ '{' }}
       return Observable.create((observer: Observer&lt;any&gt;) => {{ '{' }}
         try {{ '{' }}
@@ -101,9 +101,9 @@
   <h3>You also have to unsubscribe from Observables to avoid wasting memory resources.</h3>
   <p>Example:</p>
 
-  <div class="code-example">
+  <div class="code-example" highlight-js-content=".highlight">
     <pre>
-      <code class="javascript">
+      <code class="typescript highlight">
 // Return a basic 1 sec interval Observable
 private unsubscribeExample(): Observable&lt;any&gt; {{ '{' }}
     return Observable.interval(1000);
