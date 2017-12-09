@@ -14,6 +14,15 @@ h1 {
 
 code, .code-result {
   font-size: 12px;
+  margin: 0 2rem;
+}
+
+mat-sidenav h3 {
+  color: lightslategray;
+}
+
+mat-sidenav a {
+  color: black;
 }
 
 a {
@@ -27,6 +36,10 @@ a:hover {
 
 nav ul li {
   padding: 0.5rem;
+}
+
+.page-content {
+  padding: 0 0.5rem;
 }
 
 .hljs {
@@ -55,6 +68,16 @@ button:focus {
 
 .code-example {
   margin: 0 auto;
+  max-width: 1400px;
+}
+
+.code-example__many {
+  display: flex;
+  flex-direction: column;
+}
+
+.code-example__half {
+  width: 100%;
 }
 
 .code-result {
@@ -62,10 +85,11 @@ button:focus {
   color: white;
   font-family: 'Courier';
   padding: 2rem;
-  margin-bottom: 2rem;
+  margin: 0.5rem 2rem;
+  max-width: 1400px;
 }
 
-.async-example > :first-child {
+.highlight-first > :first-child {
   color: lime;
 }
 
@@ -73,10 +97,18 @@ button:focus {
   code, .code-result {
     font-size: 18px;
   }
+  .page-content {
+    margin: 0 2.5rem;
+  }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .page-content {
     margin: 0 5rem;
   }
+
+  .code-example__many {
+    flex-direction: row;
+  }
+  
 }

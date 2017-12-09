@@ -34,7 +34,7 @@ mat-icon {
 }
 
 mat-sidenav {
-  width: 200px;
+  width: 220px;
   padding-left: 10px;
 }
 
@@ -48,4 +48,8 @@ mat-sidenav ul {
 
 .header-text {
   color: white;
+}
+
+.subject-child {
+  padding-left: 15px;
 }
