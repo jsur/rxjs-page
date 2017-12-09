@@ -16,11 +16,13 @@ import { SubjectComponent } from './subject/subject.component';
 import { ObservableComponent } from './observable/observable.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { HighlightJsModule } from 'angular2-highlight-js';
+import { ObserverComponent } from './observer/observer.component';
 
 
 const appRoutes: Routes = [
   { path: '', component: IntroComponent },
   { path: 'observable', component: ObservableComponent },
+  { path: 'observer', component: ObserverComponent },
   { path: 'subject', component: SubjectComponent },
   { path: 'combinelatest', component: CombineLatestComponent },
   { path: 'sources', component: SourcesComponent },
@@ -34,7 +36,8 @@ const appRoutes: Routes = [
     CombineLatestComponent,
     SourcesComponent,
     SubjectComponent,
-    ObservableComponent
+    ObservableComponent,
+    ObserverComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

@@ -1,4 +1,4 @@
-<div class="intro-content">
+<div class="page-content">
 
   <h1>What is Reactive programming / RxJS?</h1>
   <h3>'<i>Reactive programming is programming with asynchronous data streams.</i>' - Andre Staltz</h3>
@@ -84,9 +84,7 @@
       <code>this.endExample$</code> is a <code>Subject</code>, which is a special type of <code>Observable</code> which can be subscribed to, and can be fed new values to emit.
     </p>
     <button class="unsub-button" type="button" (click)="unsub()">Unsubscribe</button>
-    <p>
-      <strong>Result from subscribing to the merged stream on page initialization:</strong>
-    </p>
+    <p>Result from subscribing to the merged stream on page initialization:</p>
     <div class="code-result">
       <span *ngFor="let item of mergedResult">{{item}}
         <br>

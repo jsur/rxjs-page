@@ -10,12 +10,18 @@ html, body, material-app, mat-sidenav-container {
   font-size: 18px;
 }
 
+mat-toolbar {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
 .mat-toolbar {
-  background: linear-gradient(135deg, #00fcce 22%,#64fce0 59%,#a7f9ea 100%);
+  background: linear-gradient(135deg, #00d6ae 0%,#02eabc 51%,#00f9c7 100%);
 }
 
 .mat-button {
   border: none;
+  padding: 0.5rem 2rem;
 }
 
 .mat-button:focus {
@@ -24,6 +30,15 @@ html, body, material-app, mat-sidenav-container {
 
 mat-icon {
   color: white;
+}
+
+.mat-icon {
+  height: 36px !important;
+  width: 36px !important;
+}
+
+.material-icons {
+  font-size: 36px;
 }
 
 mat-sidenav {
@@ -40,4 +55,8 @@ mat-sidenav ul {
 
 mat-sidenav-content {
   text-align: center;
+}
+
+.header-text {
+  color: white;
 }

@@ -1,4 +1,4 @@
-<div class="observable-content">
+<div class="page-content">
   <h1>What is an Observable?</h1>
   <h3>A producer of multiple values, that pushes the values to the Observers.</h3>
   <h3>Observables are able to deliver values either synchronously or asynchronously.</h3>
@@ -45,12 +45,12 @@
       </span>
     </div>
   </div>
-  <br>
-  <button type="button" (click)="unsub()">Unsubscribe</button>
+  
+  <button class="unsub-button" type="button" (click)="unsub()">Unsubscribe</button>
 
   <h3>You have to subscribe to an Observable to receive values from it.</h3>
   <h3>An Observable can have many Observers, and each Observer owns an independent execution of the Observable.</h3>
-  <h3>In English: Every time someone subscribes to an Observable, they get the all the values the Observable's subscribe function
+  <h3>In English: Every time someone subscribes to an Observable, they get all the values the Observable's subscribe function
     returns. No data is shared between the different Observers.</h3>
 
   <h3>An Observable delivers 3 types of values:</h3>
@@ -129,8 +129,8 @@ unsubscribeFromExample(): void {{ '{' }}
       <p *ngFor="let item of exampleThree">{{item}}</p>
     </div>
   </div>
-  <br>
-  <button type="button" (click)="unsubscribeFromExample()">Unsubscribe</button>
+
+  <button class="unsub-button" type="button" (click)="unsubscribeFromExample()">Unsubscribe</button>
 
   <h3>A good practice to follow is to unsubscribe from Observables when the view where they are used is destroyed.</h3>
   <h3>Handling unsubscribes is up to the developer.</h3>

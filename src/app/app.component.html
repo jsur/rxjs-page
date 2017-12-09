@@ -2,10 +2,10 @@
   <button class="mat-button" (click)="sidenav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
-  <span>RxJS visualizer</span>
+  <span class="header-text">RxJS 101</span>
 </mat-toolbar>
 <mat-sidenav-container>
-  <mat-sidenav #sidenav mat-drawer mode="side" opened="true">
+  <mat-sidenav #sidenav mat-drawer mode="side" opened="false">
     <nav>
       <h3>
         <a routerLink="/">Intro</a>
@@ -14,6 +14,9 @@
       <ul>
         <li>
           <a routerLink="observable">Observable</a>
+        </li>
+        <li>
+          <a routerLink="observer">Observer</a>
         </li>
         <li>
           <a routerLink="subject">Subject</a>
