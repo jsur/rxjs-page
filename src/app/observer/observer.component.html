@@ -7,11 +7,22 @@
   <div class="code-example" highlight-js-content=".highlight">
     <pre>
       <code class="typescript highlight">
-
+this.trades.getTrades()
+  // Emits a value after 10 secs, subscription completes.
+  .takeUntil(Observable.timer(10000))
+  .subscribe(
+    // 3 different callbacks for the different values the Observable can deliver.
+    data => 
+      this.observerData.unshift(`${{ '{' }}data[0].price{{ '}' }}} 
+      I am the most recent ${{ '{' }}data[0].side === 'buy' ? 'BUY' : 'SELL'{{ '}' }} price of ETH/USD`),
+    err => this.observerData.unshift('error occurred!'),
+    () => this.observerData.unshift('complete after 10 secs!')
+  );
       </code>
     </pre>
 
-    <div class="code-result">
+    <div class="code-result async-example">
+      <span *ngFor="let item of observerData">{{item}} <br> </span>
     </div>
   </div>
 </div>

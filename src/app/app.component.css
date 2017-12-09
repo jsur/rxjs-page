@@ -53,10 +53,6 @@ mat-sidenav ul {
   list-style: none;
 }
 
-mat-sidenav-content {
-  text-align: center;
-}
-
 .header-text {
   color: white;
 }

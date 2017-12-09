@@ -6,10 +6,6 @@ h3 {
   overflow: auto;
 }
 
-.async-example > :first-child {
-  color: lime;
-}
-
 .observable-types {
   list-style: none;
 }

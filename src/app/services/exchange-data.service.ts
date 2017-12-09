@@ -8,7 +8,7 @@ import 'rxjs/add/operator/switchMap';
 
 @Injectable()
 export class ExchangeDataService {
-  BASE_URL = 'https://api.gdax.com';
+  private BASE_URL = 'https://api.gdax.com';
 
   constructor(private http: HttpClient) { }
 
